@@ -1,4 +1,5 @@
 import Icon from '@/components/ui/icon';
+import HeroSlider from '@/components/HeroSlider';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -45,91 +46,8 @@ const features = [
 export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <img
-            src="https://cdn.poehali.dev/projects/f6cae005-1cfe-4cbe-9cc2-606d6839949f/files/a5650999-b8a7-4ece-8735-2ad4821bda8a.jpg"
-            alt="Коллекция моделей"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0d0b09] via-[#0d0b09]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b09] via-transparent to-transparent" />
-          {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: 'linear-gradient(rgba(212,131,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(212,131,10,0.06) 1px, transparent 1px)',
-              backgroundSize: '60px 60px'
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16">
-          <div className="max-w-3xl">
-            {/* Label */}
-            <div className="flex items-center gap-3 mb-6 animate-fade-in">
-              <div className="h-[1px] w-12 bg-[#d4830a]" />
-              <span className="font-mono-ibm text-xs tracking-[0.3em] text-[#d4830a] uppercase">
-                Коллекционные модели
-              </span>
-            </div>
-
-            {/* Title */}
-            <h1 className="font-oswald font-bold leading-none mb-6 animate-fade-in" style={{ animationDelay: '0.1s', opacity: 0 }}>
-              <span className="block text-[72px] md:text-[110px] text-foreground tracking-tight">
-                МИКРО
-              </span>
-              <span className="block text-[72px] md:text-[110px] text-[#d4830a] tracking-tight -mt-4">
-                МИР
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 animate-fade-in" style={{ animationDelay: '0.2s', opacity: 0 }}>
-              Точные копии легендарных автомобилей. Масштабы{' '}
-              <span className="text-[#d4830a] font-mono-ibm">1:18</span>,{' '}
-              <span className="text-[#d4830a] font-mono-ibm">1:48</span>,{' '}
-              <span className="text-[#d4830a] font-mono-ibm">1:64</span>{' '}
-              — каждая деталь воссоздана с инженерной точностью.
-            </p>
-
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.3s', opacity: 0 }}>
-              <button
-                onClick={() => onNavigate('catalog')}
-                className="industrial-btn bg-[#d4830a] text-[#0d0b09] font-oswald font-bold text-base tracking-[0.12em] px-8 py-4 uppercase hover:bg-[#c45e20] transition-colors"
-              >
-                Открыть каталог
-              </button>
-              <button
-                onClick={() => onNavigate('about')}
-                className="border border-[#d4830a]/40 text-foreground font-oswald font-medium text-base tracking-[0.12em] px-8 py-4 uppercase hover:border-[#d4830a] hover:text-[#d4830a] transition-colors"
-              >
-                О проекте
-              </button>
-            </div>
-          </div>
-
-          {/* Scale badges */}
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-3">
-            {['1:18', '1:48', '1:64'].map((s, i) => (
-              <div key={s}
-                className="scale-badge px-4 py-2 text-center"
-                style={{
-                  background: i === 0 ? '#d4830a' : i === 1 ? '#c45e20' : '#2a2a2a',
-                  color: i === 2 ? '#8a8a8a' : '#0d0b09',
-                  clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))'
-                }}>
-                {s}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom line */}
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4830a]/40 to-transparent" />
-      </section>
+      {/* HERO SLIDER */}
+      <HeroSlider onNavigate={onNavigate} />
 
       {/* STATS */}
       <section className="bg-[#0d0b09] border-y border-[#d4830a]/15 py-10">

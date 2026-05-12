@@ -211,6 +211,75 @@
     }
   }
 
+  /* ── Gear animations ── */
+  @keyframes gear-cw {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes gear-ccw {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  .gear-spin-cw {
+    animation: gear-cw 5s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .gear-spin-ccw {
+    animation: gear-ccw 3.5s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .gear-spin-slow {
+    animation: gear-cw 9s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* Pause on hover */
+  .gear-btn:hover .gear-spin-cw,
+  .gear-btn:hover .gear-spin-ccw,
+  .gear-btn:hover .gear-spin-slow {
+    animation-play-state: paused;
+  }
+
+  /* Slider content transitions */
+  @keyframes slideContentRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideContentLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .slide-enter-right {
+    animation: slideContentRight 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  .slide-enter-left {
+    animation: slideContentLeft 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
   .industrial-btn {
     @apply relative overflow-hidden;
     clip-path: polygon(

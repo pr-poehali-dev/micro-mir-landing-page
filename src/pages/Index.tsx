@@ -1,14 +1,49 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from 'react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import HomePage from '@/pages/HomePage';
+import AboutPage from '@/pages/AboutPage';
+import CatalogPage from '@/pages/CatalogPage';
+import DeliveryPage from '@/pages/DeliveryPage';
+import ReviewsPage from '@/pages/ReviewsPage';
+import ContactsPage from '@/pages/ContactsPage';
 
-const Index = () => {
+export default function Index() {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const handleNavigate = (page: string) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    document.title = ({
+      home: 'МикроМир — Коллекционные модели автомобилей',
+      about: 'История и миссия — МикроМир',
+      catalog: 'Каталог моделей — МикроМир',
+      delivery: 'Доставка и оплата — МикроМир',
+      reviews: 'Отзывы коллекционеров — МикроМир',
+      contacts: 'Контакты — МикроМир',
+    } as Record<string, string>)[currentPage] || 'МикроМир';
+  }, [currentPage]);
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home': return <HomePage onNavigate={handleNavigate} />;
+      case 'about': return <AboutPage />;
+      case 'catalog': return <CatalogPage />;
+      case 'delivery': return <DeliveryPage />;
+      case 'reviews': return <ReviewsPage />;
+      case 'contacts': return <ContactsPage />;
+      default: return <HomePage onNavigate={handleNavigate} />;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
+      <main>{renderPage()}</main>
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
-};
-
-export default Index;
+}

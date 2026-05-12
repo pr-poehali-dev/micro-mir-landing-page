@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
+import Logo from '@/components/Logo';
+import WheelButton from '@/components/WheelButton';
 
 interface NavbarProps {
   currentPage: string;
@@ -33,18 +35,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo */}
-        <button
-          onClick={() => onNavigate('home')}
-          className="flex items-center gap-3 group"
-        >
-          <div className="w-8 h-8 bg-[#d4830a] flex items-center justify-center"
-            style={{ clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))' }}>
-            <span className="text-[#0d0b09] font-oswald font-bold text-sm">М</span>
-          </div>
-          <span className="font-oswald font-bold text-xl tracking-[0.15em] text-foreground group-hover:text-[#d4830a] transition-colors">
-            МИКРОМИР
-          </span>
-        </button>
+        <Logo size="md" onClick={() => onNavigate('home')} />
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
@@ -66,28 +57,27 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
+        {/* CTA — wheel button */}
+        <div className="hidden md:flex items-center">
+          <WheelButton
+            label="Каталог"
+            size="sm"
             onClick={() => onNavigate('catalog')}
-            className="industrial-btn bg-[#d4830a] text-[#0d0b09] font-oswald font-semibold text-sm tracking-[0.1em] px-5 py-2 uppercase hover:bg-[#c45e20] transition-colors"
-          >
-            Каталог
-          </button>
+          />
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu toggle */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <Icon name={menuOpen ? "X" : "Menu"} size={22} />
+          <Icon name={menuOpen ? 'X' : 'Menu'} size={22} />
         </button>
       </div>
 
       {/* Mobile drawer */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0d0b09]/98 border-t border-[#d4830a]/20 px-6 py-6 flex flex-col gap-4">
+        <div className="md:hidden bg-[#0d0b09]/98 border-t border-[#d4830a]/20 px-6 py-6 flex flex-col gap-5">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -99,6 +89,13 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               {item.label}
             </button>
           ))}
+          <div className="pt-2 border-t border-[#d4830a]/10">
+            <WheelButton
+              label="Открыть каталог"
+              size="sm"
+              onClick={() => { onNavigate('catalog'); setMenuOpen(false); }}
+            />
+          </div>
         </div>
       )}
     </nav>

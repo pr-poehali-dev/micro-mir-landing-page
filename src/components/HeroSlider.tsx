@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import GearButton from '@/components/GearButton';
+import WheelButton from '@/components/WheelButton';
 
 interface Slide {
   id: number;
@@ -169,13 +170,12 @@ export default function HeroSlider({ onNavigate }: HeroSliderProps) {
             {slide.brand}
           </p>
 
-          {/* CTA */}
-          <button
+          {/* CTA — wheel button */}
+          <WheelButton
+            label={slide.cta}
+            size="lg"
             onClick={() => onNavigate(slide.ctaPage)}
-            className="industrial-btn bg-[#d4830a] text-[#0d0b09] font-oswald font-bold text-sm tracking-[0.15em] px-8 py-4 uppercase hover:bg-[#c45e20] transition-colors"
-          >
-            {slide.cta} →
-          </button>
+          />
         </div>
 
         {/* Stat — right side */}

@@ -1,3 +1,5 @@
+import Logo from '@/components/Logo';
+
 interface FooterProps {
   onNavigate: (page: string) => void;
 }
@@ -9,15 +11,11 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-[#d4830a] flex items-center justify-center"
-                style={{ clipPath: 'polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px))' }}>
-                <span className="text-[#0d0b09] font-oswald font-bold text-sm">М</span>
-              </div>
-              <span className="font-oswald font-bold text-xl tracking-[0.15em]">МИКРОМИР</span>
+            <div className="mb-5">
+              <Logo size="lg" onClick={() => onNavigate('home')} />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-              Коллекционные масштабные модели автомобилей. Каждая деталь — точная копия оригинала. 
+              Коллекционные масштабные модели автомобилей. Каждая деталь — точная копия оригинала.
               Масштабы 1:18, 1:48, 1:64.
             </p>
             <div className="flex gap-4 mt-6">
